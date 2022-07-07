@@ -44,10 +44,10 @@ body {
   font-weight: 700;
 }
 
-#button {
+.button {
   font-family: inherit;
-  background-color: #8e44ad;
-  border: 2px solid #8e44ad;
+  background-color: #7d7880;
+  border: 2px solid #7d7880;
   border-radius: 4px;
   color: #fff;
   display: block;
@@ -68,3 +68,14 @@ body {
 .error {
   visibility: visible;
 }
+
+#buttons {
+  display: flex;
+  justify-content: space-around;
+}
+
+#button2,
+#button3 {
+  width: 100%;
+}
+

@@ -17,6 +17,9 @@ form.addEventListener("submit", (e) => {
 
   checkInputs();
   checkPhrase();
+  setTimeout(() => {
+    clearAll();
+  }, 2500);
 });
 
 function checkInputs() {
@@ -60,4 +63,36 @@ function checkPhrase() {
       au supermarché pour en acheter, 99 bolées de cidre sur le mur. <br />`
     );
   }
+}
+
+// From Local JSON Data
+
+document.getElementById("button2").addEventListener("click", getJson);
+
+function getJson() {
+  fetch("songs.json")
+    .then(function (res) {
+      return res.json();
+    })
+    .then(function (data) {
+      console.log(data);
+      let output = "";
+      data.forEach(function (song) {
+        output += `<p>${song.title}</p>`;
+      });
+      song.innerHTML = output;
+    })
+    .catch(function (err) {
+      console.log(err);
+    });
+}
+
+// Clear Screen
+
+document.getElementById("button3").addEventListener("click", clearAll);
+
+function clearAll() {
+  song.innerHTML = "";
+  input.value = "";
+  small.className = "small";
 }

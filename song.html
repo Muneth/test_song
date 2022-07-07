@@ -15,20 +15,24 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div id="main">
-      <div class="main">
+    <main id="main">
+      <section class="main">
         <form id="form">
           <label for="song" id="label">Enter the value to play the song</label>
           <br />
           <input id="input" class="input" type="number" min="0" max="99" />
           <small class="small">Error message</small>
-          <button id="button">play</button>
+          <button id="button" class="button">PLAY</button>
         </form>
-        <div id="output">
-          <p id="song"></p>
+        <div id="buttons">
+          <button id="button2" class="button">API</button>
+          <button id="button3" class="button">Reset</button>
         </div>
-      </div>
-    </div>
+        <article id="output">
+          <p id="song"></p>
+        </article>
+      </section>
+    </main>
     <script src="song.js"></script>
   </body>
 </html>
