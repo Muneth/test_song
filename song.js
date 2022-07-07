@@ -5,7 +5,7 @@ const small = document.querySelector(".small");
 
 // Restrict Values between 0 - 99
 
-input.addEventListener("change", function () {
+input.addEventListener("change", () => {
   let v = parseInt(this.value);
   if (v < 0) this.value = 0;
   if (v > 99) this.value = 99;
@@ -29,7 +29,17 @@ function checkInputs() {
 }
 
 function checkPhrase() {
-  if (input.value > 1) {
+  if (input.value === "") {
+    return;
+  } else if (input.value === "1") {
+    song.insertAdjacentHTML(
+      "beforeend",
+      `<br />
+        1 bolée de cidre sur le mur, 1 bolée sans alcool.
+        <br />
+        Bois en un et au suivant ! Plus de bolées de cidre sur le mur. <br />`
+    );
+  } else if (input.value >= 2) {
     song.insertAdjacentHTML(
       "beforeend",
       `<br />
@@ -40,14 +50,6 @@ function checkPhrase() {
            Bois en un  et au suivant ! ${
              input.value - 1
            } bolées de cidre sur le mur." <br />`
-    );
-  } else if (input.value = 1) {
-    song.insertAdjacentHTML(
-      "beforeend",
-      `<br />
-        1 bolée de cidre sur le mur, 1 bolée sans alcool.
-        <br />
-        Bois en un et au suivant ! Plus de bolées de cidre sur le mur. <br />`
     );
   } else {
     song.insertAdjacentHTML(
