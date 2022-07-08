@@ -27,7 +27,7 @@ form.addEventListener("submit", (e) => {
 const checkInputs = () => {
   if (input.value === "") {
     small.className = "error small";
-    small.innerText = "Please enter a value";
+    small.innerText = "Entrez un numéro";
     song.innerHTML = "";
   } else {
     small.className = "small";
