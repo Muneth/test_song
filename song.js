@@ -14,84 +14,51 @@ input.addEventListener("change", () => {
 form.addEventListener("submit", (e) => {
   //prevent the normal submission of the form
   e.preventDefault();
-
+  song.innerHTML = "";
+  renderSong(+input.value);
   checkInputs();
-  checkPhrase();
   setTimeout(() => {
     clearAll();
-  }, 2500);
+  }, 3000);
 });
 
-function checkInputs() {
+// Checking that input value is not empty
+
+const checkInputs = () => {
   if (input.value === "") {
     small.className = "error small";
     small.innerText = "Please enter a value";
+    song.innerHTML = "";
   } else {
     small.className = "small";
   }
 }
 
-function checkPhrase() {
-  if (input.value === "") {
-    return;
-  } else if (input.value === "1") {
-    song.insertAdjacentHTML(
-      "beforeend",
-      `<br />
-        1 bolée de cidre sur le mur, 1 bolée sans alcool.
-        <br />
-        Bois en un et au suivant ! Plus de bolées de cidre sur le mur. <br />`
-    );
-  } else if (input.value >= 2) {
-    song.insertAdjacentHTML(
-      "beforeend",
-      `<br />
-          "${input.value} bolées de cidre sur le mur, ${
-        input.value
-      } bolées sans alcool.
-          <br />
-           Bois en un  et au suivant ! ${
-             input.value - 1
-           } bolées de cidre sur le mur." <br />`
-    );
-  } else {
-    song.insertAdjacentHTML(
-      "beforeend",
-      `<br />
-      Plus de bolées de cidre sur le mur, plus de bolées sans alcool.
-      <br /> Vas
-      au supermarché pour en acheter, 99 bolées de cidre sur le mur. <br />`
-    );
-  }
-}
+// Renderring song as per input 
 
-// From Local JSON Data
+const renderSong = (currentBollee) => {
+  const nextBollee = currentBollee - 1;
 
-document.getElementById("button2").addEventListener("click", getJson);
+  const accordWordIfPlural = (bollee) => (bollee !== 1 ? "s" : "");
+  const diplayNumberOfBollee = (bollee) => (bollee > 0 ? bollee : "plus de");
 
-function getJson() {
-  fetch("songs.json")
-    .then(function (res) {
-      return res.json();
-    })
-    .then(function (data) {
-      console.log(data);
-      let output = "";
-      data.forEach(function (song) {
-        output += `<p>${song.title}</p>`;
-      });
-      song.innerHTML = output;
-    })
-    .catch(function (err) {
-      console.log(err);
-    });
-}
+  const lyrics =
+    currentBollee === 0
+      ? `Plus de bolées de cidre sur le mur, plus de bolées sans alcool.
+         <br /> 
+         Vas au supermarché pour en acheter, 99 bolées de cidre sur le mur.`
+      : 
+        `${diplayNumberOfBollee(currentBollee)} bolée${accordWordIfPlural(currentBollee)} de cidre sur le mur, 
+         ${diplayNumberOfBollee(currentBollee)} bolée${accordWordIfPlural(currentBollee)} sans alcool.
+         <br />
+         Bois en un  et au suivant ! 
+         ${diplayNumberOfBollee(nextBollee)} bolée${accordWordIfPlural(nextBollee)} de cidre sur le mur.`;
+  song.insertAdjacentHTML("beforeend", lyrics);
+};
 
-// Clear Screen
+// Clear screen
 
-document.getElementById("button3").addEventListener("click", clearAll);
-
-function clearAll() {
+const clearAll = () => {
   song.innerHTML = "";
   input.value = "";
   small.className = "small";

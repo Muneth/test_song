@@ -69,13 +69,3 @@ body {
   visibility: visible;
 }
 
-#buttons {
-  display: flex;
-  justify-content: space-around;
-}
-
-#button2,
-#button3 {
-  width: 100%;
-}
-
